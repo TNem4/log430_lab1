@@ -17,3 +17,9 @@ CREATE TABLE IF NOT EXISTS products (
     brand VARCHAR(20) NOT NULL,
     price DECIMAL(10, 2) NOT NULL
 );
+
+-- Créer des enregistrements dans Products
+INSERT INTO products (name, brand, price) VALUES
+('Laptop', 'Dell', 999.99),
+('Smartphone', 'Samsung', 799.99),
+('Headphones', 'Sony', 199.99);

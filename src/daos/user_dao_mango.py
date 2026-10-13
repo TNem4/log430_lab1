@@ -26,6 +26,9 @@ class UserDAOMongo:
 
     def select_all(self):
         """ Select all users from MongoDB """
+        self.insert(User(None, "Alice Test", "alice.test@example.com"))
+        self.insert(User(None, "Bob Test", "bob.test@example.com"))
+        self.insert(User(None, "Charlie Test", "charlie.test@example.com"))
         user_docs = self.users.find()
         return [User(str(doc["_id"]), doc["name"], doc["email"]) for doc in user_docs]
     def insert(self, user):
@@ -43,6 +46,7 @@ class UserDAOMongo:
         return result.modified_count
     def delete(self, user_id):
         """ Delete user from MongoDB with given user ID """
-        result = self.users.delete_one({"_id": user_id})
+        from bson import ObjectId
+        result = self.users.delete_one({"_id": ObjectId(user_id)})
         return result.deleted_count
     
